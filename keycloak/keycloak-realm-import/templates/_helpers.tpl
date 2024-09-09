@@ -75,3 +75,14 @@ argocd.argoproj.io/sync-wave: "{{ .Values.argocd.syncwave }}"
 {{- "{}" }}
 {{- end }}
 {{- end }}
+
+{{/*
+Target namespace for secret
+*/}}
+{{- define "keycloak-realmimport.gitlab-secret.target-namespace" -}}
+{{- if .Values.hook.gitlabSecret.targetNamespace }}
+{{- .Values.hook.gitlabSecret.targetNamespace }}
+{{- else }}
+{{- .Release.Namespace }}
+{{- end }}
+{{- end }}

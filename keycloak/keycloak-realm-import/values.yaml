@@ -5,23 +5,41 @@ realm:
   name: backstage
 
 hook:
-  image:
-    repository: quay.io/cloud-architecture-workshop/wait-for-statefulset-job
-    pullPolicy: IfNotPresent
-    tag: "1c68180"
   serviceAccount:
     create: true
     name: ""
-  podSecurityContext:
-    runAsNonRoot: true
-    seccompProfile:
-      type: RuntimeDefault
-  securityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
-  maxTimeToWait: 120000
+  waitForStatefulset:
+    image:
+      repository: quay.io/cloud-architecture-workshop/wait-for-statefulset-job
+      pullPolicy: IfNotPresent
+      tag: "1c68180"
+    podSecurityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    maxTimeToWait: 120000
+  gitlabSecret:
+    image:
+      repository: quay.io/btison/kube-job-copy-secret
+      pullPolicy: IfNotPresent
+      tag: "08a706e"
+    podSecurityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    sourceNamespace:
+    targetNamespace:
+    sourceSecret:
 
 argocd:
   enabled: true

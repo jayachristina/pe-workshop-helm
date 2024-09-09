@@ -18,13 +18,13 @@ spec:
     spec:
       serviceAccountName: {{ include "keycloak-realmimport.name" . }}-hook
       securityContext:
-        {{- toYaml .Values.hook.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.hook.waitForStatefulset.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.hook.securityContext | nindent 12 }}
-          image: "{{ .Values.hook.image.repository }}:{{ .Values.hook.image.tag }}"
-          imagePullPolicy: {{ .Values.hook.image.pullPolicy }}
+            {{- toYaml .Values.hook.waitForStatefulset.securityContext | nindent 12 }}
+          image: "{{ .Values.hook.waitForStatefulset.image.repository }}:{{ .Values.hook.waitForStatefulset.image.tag }}"
+          imagePullPolicy: {{ .Values.hook.waitForStatefulset.image.pullPolicy }}
           env:
             - name: NAMESPACE
               valueFrom:
@@ -33,5 +33,5 @@ spec:
             - name: STATEFULSET
               value: {{ .Values.keycloak.name }}
             - name: MAX_TIME_TO_WAIT_MS
-              value: "{{ .Values.hook.maxTimeToWait }}"
+              value: "{{ .Values.hook.waitForStatefulset.maxTimeToWait }}"
       restartPolicy: Never
