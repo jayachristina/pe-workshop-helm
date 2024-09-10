@@ -86,3 +86,36 @@ Target namespace for secret
 {{- .Release.Namespace }}
 {{- end }}
 {{- end }}
+
+{{/*
+Gitlab application clientId
+*/}}
+{{- define "keycloak-realmimport.gitlab-secret.clientId" }}
+{{- $output := "" }}
+{{- if .Values.identityProvider.gitlab.clientId }}
+{{- $output = .Values.identityProvider.gitlab.clientId }}
+{{- else }}
+{{- $secretObj := (lookup "v1" "Secret" (include "keycloak-realmimport.gitlab-secret.target-namespace" .) .Values.hook.gitlabSecret.sourceSecret) | default dict }}
+{{- $secretData := (get $secretObj "data") | default dict }}
+{{- $clientId := (get $secretData "clientId") | b64dec }}
+{{- $output = $clientId }}
+{{- end }}
+{{- $output }}
+{{- end }}
+
+
+{{/*
+Gitlab application clientId
+*/}}
+{{- define "keycloak-realmimport.gitlab-secret.clientSecret" }}
+{{- $output := "" }}
+{{- if .Values.identityProvider.gitlab.clientSecret }}
+{{- $output = .Values.identityProvider.gitlab.clientSecret }}
+{{- else }}
+{{- $secretObj := (lookup "v1" "Secret" (include "keycloak-realmimport.gitlab-secret.target-namespace" .) .Values.hook.gitlabSecret.sourceSecret) | default dict }}
+{{- $secretData := (get $secretObj "data") | default dict }}
+{{- $clientSecret := (get $secretData "clientSecret") | b64dec }}
+{{- $output = $clientSecret }}
+{{- end }}
+{{- $output }}
+{{- end }}

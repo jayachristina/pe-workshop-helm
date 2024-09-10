@@ -45,3 +45,15 @@ argocd:
   enabled: true
   syncwave: "-1"
 
+backstage:
+  redirectUri:
+  webOrigin:
+
+identityProvider:
+  gitlab:
+    name: gitlab
+    authorizationUrl: 
+    tokenUrl: 
+    clientId:
+    clientSecret:
+    secret:
