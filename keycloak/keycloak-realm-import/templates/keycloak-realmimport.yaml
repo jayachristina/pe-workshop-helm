@@ -1194,7 +1194,7 @@ spec:
           validateSignature: 'false'
           acceptsPromptNoneForwardFromClient: 'false'
           tokenUrl: '{{ .Values.identityProvider.gitlab.tokenUrl }}'
-          clientId: '{{ include "keycloak-realmimport.gitlab-secret.clientId" .}}'
+          clientId: '{{ .Values.identityProvider.gitlab.clientId }}'
           uiLocales: 'false'
           isAccessTokenJWT: 'false'
           filteredByClaim: 'false'
@@ -1208,7 +1208,7 @@ spec:
           disableUserInfo: 'false'
           sendIdTokenOnLogout: 'true'
           syncMode: IMPORT
-          clientSecret: '{{ include "keycloak-realmimport.gitlab-secret.clientSecret" .}}'
+          clientSecret: '{{ .Values.identityProvider.gitlab.clientSecret }}'
           passMaxAge: 'false'
           allowedClockSkew: '0'    
     identityProviderMappers: []
