@@ -533,7 +533,7 @@ spec:
         enabled: true
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
-        secret: "{{ randAlphaNum 32 }}"
+        secret: {{ include "keycloak-realmimport.client-backstage-secret" . }}
         redirectUris:
           - {{ .Values.backstage.redirectUri }}
         webOrigins:

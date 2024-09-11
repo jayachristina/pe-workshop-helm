@@ -30,6 +30,7 @@ argocd:
 backstage:
   redirectUri:
   webOrigin:
+  secret:
 
 identityProvider:
   gitlab:
