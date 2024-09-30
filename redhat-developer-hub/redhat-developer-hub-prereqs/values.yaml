@@ -3,7 +3,9 @@ nameOverride: "backstage-postgresql"
 backstage:
   postgresql:
     password: password
+  bucketclaim:
+    name: backstage-bucket-claim
 
 argocd:
   enabled: true
-  syncwave: "-2"
+  syncwave: "-2".
