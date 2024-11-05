@@ -29,6 +29,10 @@ redhat-developer-hub:
           disabled: false
         - package: ./dynamic-plugins/dist/backstage-plugin-techdocs
           disabled: false
+        - package: ./dynamic-plugins/dist/roadiehq-scaffolder-backend-module-utils-dynamic
+          disabled: false
+        - package: ./dynamic-plugins/dist/backstage-plugin-catalog-backend-module-gitlab-dynamic
+          disabled: false
   upstream:
     postgresql:
       auth:
